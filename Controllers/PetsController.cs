@@ -57,6 +57,18 @@ namespace pet_hotel.Controllers
             .Include(pet => pet.ownedBy);
         }
 
+
+        [HttpGet("{id}")]
+        public ActionResult<Pet> GetById(int id) {
+            Pet pet = _context.Pets
+                .SingleOrDefault(pet => pet.id == id);
+
+                if (pet == null) {
+                    return NotFound();
+                }
+                return pet;
+        }
+
         [HttpPost]
         public Pet Post(Pet newPet) {
             _context.Add(newPet);

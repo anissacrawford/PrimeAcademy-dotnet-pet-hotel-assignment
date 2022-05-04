@@ -34,6 +34,7 @@ namespace pet_hotel
         [Required]
         public PetColorType color {get; set;}
 
+        [Timestamp]
         public DateTime? checkedInAt {get; set;}
 
         [Required]

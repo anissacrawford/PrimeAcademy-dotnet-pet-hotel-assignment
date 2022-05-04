@@ -145,7 +145,7 @@ Ideally you will create a PetBreed Enum and PetColor Enum to limit the available
 
 `GET /api/petowners/` should return a list of pet owner objects. A Pet Owner should have a read-only `petCount` field that contains the number of pets that belong to the pet owner.
 
-`GET /api/pets/:id` should return the `PetOwner` object with the given id.
+`GET /api/petowners/:id` should return the `PetOwner` object with the given id.
 
 `POST /api/petowners/` should create a new pet object. The body of the HTTP post should contain the `PetOwner` object in JSON format with all required fields.
 
