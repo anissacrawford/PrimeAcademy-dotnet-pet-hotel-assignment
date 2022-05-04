@@ -21,10 +21,10 @@ namespace pet_hotel.Controllers
 
         // This is just a stub for GET / to prevent any weird frontend errors that 
         // occur when the route is missing in this controller
-        [HttpGet]
-        public IEnumerable<Pet> GetPets() {
-            return new List<Pet>();
-        }
+        // [HttpGet]
+        // public IEnumerable<Pet> GetPets() {
+        //     return new List<Pet>();
+        // }
 
         // [HttpGet]
         // [Route("test")]
@@ -49,5 +49,12 @@ namespace pet_hotel.Controllers
 
         //     return new List<Pet>{ newPet1, newPet2};
         // }
+
+        [HttpGet]
+        public IEnumerable<Pet> GetPets() {
+            return _context.Pets 
+
+            .Include(pet => pet.ownedBy);
+        }
     }
 }
