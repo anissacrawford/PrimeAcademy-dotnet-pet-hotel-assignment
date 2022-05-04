@@ -40,12 +40,12 @@ namespace pet_hotel.Controllers
         //         breed = PetBreedType.Poodle,
         //     };
 
-        //     Pet newPet2 = new Pet {
-        //         name = "Little Dog",
-        //         petOwner = blaine,
-        //         color = PetColorType.Golden,
-        //         breed = PetBreedType.Labrador,
-        //     };
+            // Pet newPet2 = new Pet {
+            //     name = "Little Dog",
+            //     petOwner = blaine,
+            //     color = PetColorType.Golden,
+            //     breed = PetBreedType.Labrador,
+            // };
 
         //     return new List<Pet>{ newPet1, newPet2};
         // }
@@ -55,6 +55,14 @@ namespace pet_hotel.Controllers
             return _context.Pets 
 
             .Include(pet => pet.ownedBy);
+        }
+
+        [HttpPost]
+        public Pet Post(Pet newPet) {
+            _context.Add(newPet);
+            _context.SaveChanges();
+
+            return newPet;
         }
     }
 }
