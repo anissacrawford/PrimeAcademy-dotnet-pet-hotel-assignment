@@ -65,6 +65,15 @@ namespace pet_hotel.Controllers
             
         }
 
+        [HttpDelete("{id}")] 
+        public void Delete(int id){
+            PetOwner petOwnerToDelete = _context.PetOwners.Find(id);
+
+            _context.PetOwners.Remove(petOwnerToDelete);
+
+            _context.SaveChanges();
+        }
+
 
     }
 }
