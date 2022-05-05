@@ -36,7 +36,7 @@ namespace pet_hotel
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public PetColorType color {get; set;}
 
-        [Timestamp]
+        
         public DateTime? checkedInAt {get; set;}
 
         [Required]

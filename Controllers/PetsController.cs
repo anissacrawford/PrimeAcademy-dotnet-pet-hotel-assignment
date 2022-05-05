@@ -99,13 +99,30 @@ namespace pet_hotel.Controllers
         }
 
         [HttpPut("{id}/checkin")]
-        public Pet PutCheckIn(int id, Pet petToCheckIn) {
+        public Pet PutCheckIn(int id) {
 
-            petToCheckIn.checkedInAt = DateTime.Now;
+            Pet petToCheckIn = _context.Pets.SingleOrDefault(pet => pet.id == id);
             
-            petToCheckIn.id = id;
-            _context.Update(petToCheckIn);
+            petToCheckIn.checkedInAt = DateTime.Now;
+
+            _context.Pets.Update(petToCheckIn);
+
             _context.SaveChanges();
+
+            return petToCheckIn;
+        }
+
+        [HttpPut("{id}/checkout")]
+        public Pet PutCheckOut(int id) {
+
+            Pet petToCheckIn = _context.Pets.SingleOrDefault(pet => pet.id == id);
+            
+            petToCheckIn.checkedInAt = null;
+
+            _context.Pets.Update(petToCheckIn);
+
+            _context.SaveChanges();
+
             return petToCheckIn;
         }
 
