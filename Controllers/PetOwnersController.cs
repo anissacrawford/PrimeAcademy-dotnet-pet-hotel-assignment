@@ -12,7 +12,8 @@ namespace pet_hotel.Controllers
     public class PetOwnersController : ControllerBase
     {
         private readonly ApplicationContext _context;
-        public PetOwnersController(ApplicationContext context) {
+        public PetOwnersController(ApplicationContext context)
+        {
             _context = context;
         }
 
@@ -24,29 +25,46 @@ namespace pet_hotel.Controllers
         // }
 
         [HttpGet]
-        public IEnumerable<PetOwner> GetAll() {
-            return  _context.PetOwners;
+        public IEnumerable<PetOwner> GetAll()
+        {
+            return _context.PetOwners;
         }
 
         [HttpGet("{id}")]
-        public ActionResult<PetOwner> GetById(int id) {
+        public ActionResult<PetOwner> GetById(int id)
+        {
             PetOwner petOwner = _context.PetOwners
                 .SingleOrDefault(petOwner => petOwner.id == id);
 
-                if (petOwner == null) {
-                    return NotFound();
-                }
-                return petOwner;
+            if (petOwner == null)
+            {
+                return NotFound();
+            }
+            return petOwner;
         }
 
         [HttpPost]
-        public PetOwner Post(PetOwner newOwner) {
+        public PetOwner Post(PetOwner newOwner)
+        {
             _context.Add(newOwner);
             _context.SaveChanges();
 
             return newOwner;
         }
 
-        
+        [HttpPut("{id}")]
+        public ActionResult<PetOwner> Put(int id, PetOwner petOwnerToChange)
+        {
+            petOwnerToChange.id = id;
+
+            _context.Update(petOwnerToChange);
+
+            _context.SaveChanges();
+
+            return petOwnerToChange;
+            
+        }
+
+
     }
 }
