@@ -70,11 +70,11 @@ namespace pet_hotel.Controllers
         }
 
         [HttpPost]
-        public Pet Post(Pet newPet) {
+        public IActionResult Post(Pet newPet) {
             _context.Add(newPet);
             _context.SaveChanges();
 
-            return newPet;
+            return Created("/api/Pets", newPet);
         }
 
         [HttpPut("{id}")]
@@ -90,12 +90,14 @@ namespace pet_hotel.Controllers
         }
 
         [HttpDelete("{id}")]
-        public void Delete(int id){
+        public ActionResult Delete(int id){
             Pet petToChange = _context.Pets.Find(id);
 
             _context.Pets.Remove(petToChange);
 
             _context.SaveChanges();
+
+            return NoContent();
         }
 
         [HttpPut("{id}/checkin")]

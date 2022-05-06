@@ -44,12 +44,12 @@ namespace pet_hotel.Controllers
         }
 
         [HttpPost]
-        public PetOwner Post(PetOwner newOwner)
+        public IActionResult Post(PetOwner newOwner)
         {
             _context.Add(newOwner);
             _context.SaveChanges();
 
-            return newOwner;
+            return Created("whassssup", newOwner);
         }
 
         [HttpPut("{id}")]
@@ -66,12 +66,14 @@ namespace pet_hotel.Controllers
         }
 
         [HttpDelete("{id}")] 
-        public void Delete(int id){
+        public ActionResult Delete(int id){
             PetOwner petOwnerToDelete = _context.PetOwners.Find(id);
 
             _context.PetOwners.Remove(petOwnerToDelete);
 
             _context.SaveChanges();
+
+            return NoContent();
         }
 
 
